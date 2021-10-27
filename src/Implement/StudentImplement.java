@@ -42,7 +42,7 @@ public class StudentImplement extends UnicastRemoteObject implements StudentInte
         
         for (int i = 0; i < numberStudents; i++) {
             for (int j = 0; j < numberNotes; j++) {
-                matrix[i][j] = (int) (Math.random()*9+1);
+                matrix[i][j] = (float) (Math.random()*9+1);
             } 
         }
        return matrix;

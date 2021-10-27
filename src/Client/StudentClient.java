@@ -33,6 +33,7 @@ public class StudentClient {
             students = Integer.parseInt(br.readLine());
 
             StudentInterface studentinterface = (StudentInterface) Naming.lookup("Student");
+            //aqui puede estar el error
             matrix = studentinterface.fillMatrix(notes, students);
 
             for (int i = 0; i < matrix.length; i++) {
