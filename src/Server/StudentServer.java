@@ -3,20 +3,20 @@ package Server;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import Implement.EstudImplement;
+import Implement.StudentImplement;
 
 /**
  *
  * @author Juan David Velez Velez
  * @author Sneider Alonso Gomez
  */
-public class EstudServer {
+public class StudentServer {
 
     public static void main(String[] args) throws RemoteException {
         Registry reg = LocateRegistry.createRegistry(1099);
-        //CalcImplement calcImplement = new CalcImplement(0, 0);
+        StudentImplement studentimplement = new StudentImplement(0,0);
         //nombre objeto
-        //reg.rebind("Calc", calcImplement);
+        reg.rebind("Student", studentimplement);
         System.out.println("servidor iniciado");
     }
 }
