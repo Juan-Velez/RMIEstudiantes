@@ -10,6 +10,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,6 +24,7 @@ public class StudentClient {
         int notes, students;
         float noteMatrix[][] = new float[0][0];
         float average;
+        float vectorMajor[] = new float[0];
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -43,6 +45,12 @@ public class StudentClient {
                 System.out.println( );
             }
             
+           //vectorMajor = studentinterface.majorNote(noteMatrix, students, notes);
+           //vectorMajor = studentinterface.minorNote(noteMatrix, students, notes);
+            
+//            for (int i = 0; i < students; i++) {
+//                System.out.println("La mejor nota del estudiante " + (i+1) + " es: " + vectorMajor[i]);
+//            }
             average = studentinterface.groupAverage(noteMatrix, students, notes);
             System.out.println(average);
 

@@ -38,37 +38,6 @@ public class StudentImplement extends UnicastRemoteObject implements StudentInte
         this.students = students;
     }
 
-    public float[][] getNoteMatrix() {
-        return noteMatrix;
-    }
-
-    public void setNoteMatrix(float[][] noteMatrix) {
-        this.noteMatrix = noteMatrix;
-    }
-
-    public float[] getNoteVector() {
-        return noteVector;
-    }
-
-    public void setNoteVector(float[] noteVector) {
-        this.noteVector = noteVector;
-    }
-
-    
-//    public float[][] matrizllena(int numberNotes,int numberStudents){
-//                
-//        float matrixx[][] = new float[numberStudents][numberNotes];
-//        
-//        System.out.println(numberStudents);
-//        for (int i = 0; i < numberStudents; i++) {
-//            for (int j = 0; j < numberNotes; j++) {
-//                matrixx[i][j] = 14;
-//      
-//            } 
-//        }
-//        matrix = matrixx;
-//        return matrix;
-//    }
     
     @Override
     public float[][] fillMatrix(int numberNotes, int numberStudents) throws RemoteException {
@@ -82,43 +51,83 @@ public class StudentImplement extends UnicastRemoteObject implements StudentInte
         }
         noteMatrix = auxMatrix;
         return noteMatrix;
-//        
-//        float matrix[][] = new float[numberStudents][numberNotes];
-//        
-//        System.out.println("hola");
-//        for (int i = 0; i < numberStudents; i++) {
-//            for (int j = 0; j < numberNotes; j++) {
-//                matrix[i][j] = 1;
-//                
-//            } 
-//        }
+      
+    }
 
-//        
-//       return matrizllena(numberNotes, numberStudents);
+    @Override
+    public float[] majorNote(float[][] studentMatrix, int numberStudents, int numberNotes) throws RemoteException {
+        
+        float major = 0;
+        float auxVector[] = new float[numberStudents];
+        float auxMatrix[][] = new float[numberStudents][numberNotes];
+        auxMatrix = studentMatrix;
+ 
+        for (int i = 0; i < numberStudents; i++) {
+            for (int j = 0; j < numberNotes; j++) {
+                if (auxMatrix[i][j] > major) {
+                    major = auxMatrix[i][j];
+                } 
+            }
+            auxVector[i] = major;  
+            major = 0;
+        }
+        
+        noteVector = auxVector;
+        return noteVector;
+        
+    }
 
-
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Override
+    public float[] minorNote(float[][] studentMatrix, int numberStudents, int numberNotes) throws RemoteException {
+        
+        float minor = 5;
+        float auxVector[] = new float[numberStudents];
+        float auxMatrix[][] = new float[numberStudents][numberNotes];
+        auxMatrix = studentMatrix;
+ 
+        for (int i = 0; i < numberStudents; i++) {
+            for (int j = 0; j < numberNotes; j++) {
+                if (auxMatrix[i][j] < minor) {
+                    minor= auxMatrix[i][j];
+                } 
+            }
+            auxVector[i] = minor;  
+            minor = 5;
+        }
+        
+        noteVector = auxVector;
+        return noteVector;
+        
     }
 
     @Override
     public float groupAverage(float[][] studentMatrix, int numberStudents, int numberNotes) throws RemoteException {
+        
         float sum = 0;
-        float average = 0;
-
-        System.out.println("hola");
+        float aux = 0;
+        float aux2 = 0;
+        float pro = 0;
         
-        // Esto solo es de prueba
-        for (int i = 0; i < numberStudents; i++) {
-            for (int j = 0; j < numberNotes; j++) {
-                sum = sum + studentMatrix[i][j];
+        float auxMatrix[][] = new float[numberStudents][numberNotes];
+        auxMatrix = studentMatrix;
+        
+        for (int i = 0; i < students; i++) {
+            for (int j = 0; j < notes; j++) {
+                aux = aux + auxMatrix[i][j];
+                sum = aux / notes;
+
             }
+            aux2 = aux2 + sum;
+            sum = 0;
+            aux = 0;
         }
-        average = sum / numberStudents;
-
+        pro = aux2 / students;
+        return pro ;
         
-        return average ;
+        
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     
     
 

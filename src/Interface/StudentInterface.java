@@ -12,12 +12,11 @@ public interface StudentInterface extends Remote {
     
     public float[][] fillMatrix(int numberNotes, int numberStudents) throws RemoteException;
     
-//    public float majorNote(int [][] studentMatrix) throws RemoteException;
-//    
-//    public float minorNote(int [][] studentMatrix) throws RemoteException;
-//    
+    public float[] majorNote(float [][] studentMatrix, int numberStudents, int numberNotes) throws RemoteException;
+   
+    public float[] minorNote(float [][] studentMatrix, int numberStudents, int numberNotes) throws RemoteException;
+   
     public float groupAverage(float [][] studentMatrix, int numberStudents, int numberNotes) throws RemoteException;
-//    
-    
+   
     
 }
