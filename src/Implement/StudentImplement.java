@@ -14,7 +14,8 @@ public class StudentImplement extends UnicastRemoteObject implements StudentInte
 
     public int notes;
     public int students;
-    public float matrix[][];
+    public float noteMatrix[][];
+    public float noteVector[];
 
     public StudentImplement(int notes, int students) throws RemoteException {
         this.notes = notes;
@@ -37,13 +38,22 @@ public class StudentImplement extends UnicastRemoteObject implements StudentInte
         this.students = students;
     }
 
-    public float[][] getMatrix() {
-        return matrix;
+    public float[][] getNoteMatrix() {
+        return noteMatrix;
     }
 
-    public void setMatrix(float[][] matrix) {
-        this.matrix = matrix;
+    public void setNoteMatrix(float[][] noteMatrix) {
+        this.noteMatrix = noteMatrix;
     }
+
+    public float[] getNoteVector() {
+        return noteVector;
+    }
+
+    public void setNoteVector(float[] noteVector) {
+        this.noteVector = noteVector;
+    }
+
     
 //    public float[][] matrizllena(int numberNotes,int numberStudents){
 //                
@@ -62,6 +72,16 @@ public class StudentImplement extends UnicastRemoteObject implements StudentInte
     
     @Override
     public float[][] fillMatrix(int numberNotes, int numberStudents) throws RemoteException {
+              
+        float auxMatrix[][] = new float[numberStudents][numberNotes];
+        
+        for (int i = 0; i < numberStudents; i++) {
+            for (int j = 0; j < numberNotes; j++) {
+                auxMatrix[i][j] = (float) (Math.random()*6);
+            }
+        }
+        noteMatrix = auxMatrix;
+        return noteMatrix;
 //        
 //        float matrix[][] = new float[numberStudents][numberNotes];
 //        
@@ -76,18 +96,28 @@ public class StudentImplement extends UnicastRemoteObject implements StudentInte
 //        
 //       return matrizllena(numberNotes, numberStudents);
 
-        float matrixx[][] = new float[numberStudents][numberNotes];
+
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public float groupAverage(float[][] studentMatrix, int numberStudents, int numberNotes) throws RemoteException {
+        float sum = 0;
+        float average = 0;
+
+        System.out.println("hola");
         
-        System.out.println(numberStudents);
+        // Esto solo es de prueba
         for (int i = 0; i < numberStudents; i++) {
             for (int j = 0; j < numberNotes; j++) {
-                matrixx[i][j] = 14;
-      
-            } 
+                sum = sum + studentMatrix[i][j];
+            }
         }
-        matrix = matrixx;
-        return matrix;
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        average = sum / numberStudents;
+
+        
+        return average ;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

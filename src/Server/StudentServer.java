@@ -15,7 +15,6 @@ public class StudentServer {
     public static void main(String[] args) throws RemoteException {
         Registry reg = LocateRegistry.createRegistry(1099);
         StudentImplement studentimplement = new StudentImplement(0,0);
-        //nombre objeto
         reg.rebind("Student", studentimplement);
         System.out.println("servidor iniciado");
     }

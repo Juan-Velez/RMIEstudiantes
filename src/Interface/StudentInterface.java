@@ -16,7 +16,7 @@ public interface StudentInterface extends Remote {
 //    
 //    public float minorNote(int [][] studentMatrix) throws RemoteException;
 //    
-//    public float groupAverage(int [][] studentMatrix) throws RemoteException;
+    public float groupAverage(float [][] studentMatrix, int numberStudents, int numberNotes) throws RemoteException;
 //    
     
     

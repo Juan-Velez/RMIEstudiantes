@@ -8,7 +8,7 @@ package rmiestudiantes;
 public class RMIEstudiantes {
 
     public static void main(String[] args) {
-        // TODO code application logic here
+
     }
     
 }
