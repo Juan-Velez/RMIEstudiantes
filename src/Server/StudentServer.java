@@ -19,4 +19,5 @@ public class StudentServer {
         reg.rebind("Student", studentimplement);
         System.out.println("servidor iniciado");
     }
+    
 }
