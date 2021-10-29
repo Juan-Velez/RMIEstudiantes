@@ -110,22 +110,19 @@ public class StudentImplement extends UnicastRemoteObject implements StudentInte
         
         float auxMatrix[][] = new float[numberStudents][numberNotes];
         auxMatrix = studentMatrix;
-        
-        for (int i = 0; i < students; i++) {
-            for (int j = 0; j < notes; j++) {
+                                                                                                                                                                                                          
+        for (int i = 0; i < numberStudents; i++) {
+            for (int j = 0; j < numberNotes; j++) {
                 aux = aux + auxMatrix[i][j];
-                sum = aux / notes;
-
+                sum = aux / numberNotes; 
             }
             aux2 = aux2 + sum;
             sum = 0;
             aux = 0;
         }
-        pro = aux2 / students;
+        pro = aux2 / numberStudents;
         return pro ;
         
-        
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     
