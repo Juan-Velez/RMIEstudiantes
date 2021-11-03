@@ -14,6 +14,7 @@ public class StudentImplement extends UnicastRemoteObject implements StudentInte
 
     public int notes;
     public int students;
+    public float average;
     public float noteMatrix[][];
     public float noteVector[];
 
@@ -46,7 +47,7 @@ public class StudentImplement extends UnicastRemoteObject implements StudentInte
         
         for (int i = 0; i < numberStudents; i++) {
             for (int j = 0; j < numberNotes; j++) {
-                auxMatrix[i][j] = (float) (Math.random()*6);
+                auxMatrix[i][j] = (float) (Math.random()*5);
             }
         }
         noteMatrix = auxMatrix;
@@ -59,19 +60,16 @@ public class StudentImplement extends UnicastRemoteObject implements StudentInte
         
         float major = 0;
         float auxVector[] = new float[numberStudents];
-        float auxMatrix[][] = new float[numberStudents][numberNotes];
-        auxMatrix = studentMatrix;
  
         for (int i = 0; i < numberStudents; i++) {
             for (int j = 0; j < numberNotes; j++) {
-                if (auxMatrix[i][j] > major) {
-                    major = auxMatrix[i][j];
+                if (studentMatrix[i][j] > major) {
+                    major = studentMatrix[i][j];
                 } 
             }
             auxVector[i] = major;  
             major = 0;
-        }
-        
+        }  
         noteVector = auxVector;
         return noteVector;
         
@@ -82,19 +80,16 @@ public class StudentImplement extends UnicastRemoteObject implements StudentInte
         
         float minor = 5;
         float auxVector[] = new float[numberStudents];
-        float auxMatrix[][] = new float[numberStudents][numberNotes];
-        auxMatrix = studentMatrix;
  
         for (int i = 0; i < numberStudents; i++) {
             for (int j = 0; j < numberNotes; j++) {
-                if (auxMatrix[i][j] < minor) {
-                    minor= auxMatrix[i][j];
+                if (studentMatrix[i][j] < minor) {
+                    minor= studentMatrix[i][j];
                 } 
             }
             auxVector[i] = minor;  
             minor = 5;
         }
-        
         noteVector = auxVector;
         return noteVector;
         
@@ -103,30 +98,16 @@ public class StudentImplement extends UnicastRemoteObject implements StudentInte
     @Override
     public float groupAverage(float[][] studentMatrix, int numberStudents, int numberNotes) throws RemoteException {
         
-        float sum = 0;
         float aux = 0;
-        float aux2 = 0;
-        float pro = 0;
-        
-        float auxMatrix[][] = new float[numberStudents][numberNotes];
-        auxMatrix = studentMatrix;
-                                                                                                                                                                                                          
+                                                                                                                                                                                    
         for (int i = 0; i < numberStudents; i++) {
             for (int j = 0; j < numberNotes; j++) {
-                aux = aux + auxMatrix[i][j];
-                sum = aux / numberNotes; 
+                aux = aux + studentMatrix[i][j];
             }
-            aux2 = aux2 + sum;
-            sum = 0;
-            aux = 0;
         }
-        pro = aux2 / numberStudents;
-        return pro ;
+        average = aux / (numberNotes*numberStudents);
+        return average ;
         
     }
-
-    
-    
-
 
 }

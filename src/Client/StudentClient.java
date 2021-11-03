@@ -21,13 +21,11 @@ public class StudentClient {
 
     public static void main(String[] args) throws IOException, NotBoundException {
 
-        int notes, students, choice = 0;
+        int notes, students, flag = 0, choice = 0;
         float noteMatrix[][] = new float[0][0];
-        float average ;
+        float average;
         float vectorNotes[] = new float[0];
         String resultado = "";
-
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         
         JOptionPane.showMessageDialog(null, "Bienvenido por favor marque aceptar y compete la informacion");
         students = Integer.parseInt(JOptionPane.showInputDialog("Introduzca el numero de estudiantes"));
@@ -46,16 +44,29 @@ public class StudentClient {
                 try {
                     StudentInterface studentinterface = (StudentInterface) Naming.lookup("Student");
                     if (choice == 1) {
-                        noteMatrix = studentinterface.fillMatrix(notes, students);
-                        for (int i = 0; i < students; i++) {
-                            for (int j = 0; j < notes; j++) {
-                                resultado += noteMatrix[i][j];
-                                resultado += "    ";
+                        if(flag == 0){
+                            noteMatrix = studentinterface.fillMatrix(notes, students);
+                            for (int i = 0; i < students; i++) {
+                                for (int j = 0; j < notes; j++) {
+                                    resultado += noteMatrix[i][j];
+                                    resultado += "    ";
+                                }
+                                resultado += "\n";
                             }
-                            resultado += "\n";
+                            JOptionPane.showMessageDialog(null, resultado);
+                            resultado = " ";
+                            flag = 1;
+                        }else {
+                            for (int i = 0; i < students; i++) {
+                                for (int j = 0; j < notes; j++) {
+                                    resultado += noteMatrix[i][j];
+                                    resultado += "    ";
+                                }
+                                resultado += "\n";
+                            }
+                            JOptionPane.showMessageDialog(null, resultado);
+                            resultado = " ";
                         }
-                        JOptionPane.showMessageDialog(null, resultado);
-                        resultado = " ";
                     } else if (choice == 2) {
                         vectorNotes = studentinterface.majorNote(noteMatrix, students, notes);
                         for (int i = 0; i < students; i++) {
@@ -74,7 +85,7 @@ public class StudentClient {
                         resultado = " ";
                     }else if (choice == 4){
                         average = studentinterface.groupAverage(noteMatrix, students, notes);
-                       // JOptionPane.showMessageDialog(null, average);
+                        JOptionPane.showMessageDialog(null, average);
                         System.out.println(average);
                     }
                 } catch (NotBoundException | MalformedURLException | RemoteException ex) {
