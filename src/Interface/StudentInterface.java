@@ -6,7 +6,7 @@ import java.rmi.RemoteException;
 /**
  *
  * @author Juan David Velez Velez
- * @author Sneider Alonso Gomez
+ * @author Sneider Alonso Gómez Orrego
  */
 public interface StudentInterface extends Remote {
     

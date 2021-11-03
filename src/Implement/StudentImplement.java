@@ -4,12 +4,11 @@ package Implement;
 import java.rmi.server.UnicastRemoteObject;
 import Interface.StudentInterface;
 import java.rmi.RemoteException;
-import java.text.DecimalFormat;
 
 /**
  *
  * @author Juan David Velez Velez
- * @author Sneider Alonso Gomez
+ * @author Sneider Alonso Gómez Orrego
  */
 public class StudentImplement extends UnicastRemoteObject implements StudentInterface {
 
@@ -45,19 +44,9 @@ public class StudentImplement extends UnicastRemoteObject implements StudentInte
               
         float auxMatrix[][] = new float[numberStudents][numberNotes];
 
-//        formato.setMaximumFractionDigits(2);
         for (int i = 0; i < numberStudents; i++) {
             for (int j = 0; j < numberNotes; j++) {
                 auxMatrix[i][j] = (float) (Math.random()*4+1);
-//                auxMatrix[i][j] = Float.valueOf(formato.format((float) (Math.random()*4+1)));
-                //formato.format(auxMatrix[i][j]);
-//                formato.format(auxMatrix[i][j] = (float) (Math.random()*4+1));
-            }
-        }
-       DecimalFormat formato = new DecimalFormat("#.#");
-        for (int i = 0; i < numberStudents; i++) {
-            for (int j = 0; j < numberNotes; j++) {
-                formato.format(auxMatrix[i][j]);
             }
         }
         noteMatrix = auxMatrix;

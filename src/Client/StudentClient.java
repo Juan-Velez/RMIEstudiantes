@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.text.DecimalFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -13,7 +14,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author Juan David Velez Velez
- * @author Sneider Alonso Gomez
+ * @author Sneider Alonso Gómez Orrego
  */
 public class StudentClient {
 
@@ -24,6 +25,7 @@ public class StudentClient {
         float average;
         float vectorNotes[] = new float[0];
         String result = "";
+        DecimalFormat formato = new DecimalFormat("#.#");
         
         JOptionPane.showMessageDialog(null, "Bienvenido por favor marque aceptar y complete la informacion");
         students = Integer.parseInt(JOptionPane.showInputDialog("Introduzca el numero de estudiantes"));
@@ -46,9 +48,9 @@ public class StudentClient {
                     }
                     if (choice == 1) {
                         for (int i = 0; i < students; i++) {
-                            result += "\n" + "estudiante " + (i+1);
+                            result += "\n" + "estudiante " + (i+1) + "\t";
                             for (int j = 0; j < notes; j++) {
-                                result += "  " + noteMatrix[i][j];
+                                result += "  " + formato.format(noteMatrix[i][j]) + "\t" ;
                                 result += "    ";
                             }
                         }
@@ -57,7 +59,7 @@ public class StudentClient {
                     } else if (choice == 2) {
                         vectorNotes = studentinterface.majorNote(noteMatrix, students, notes);
                         for (int i = 0; i < students; i++) {
-                            result += "La mejor nota del estudiante " + (i+1) + " es: " + vectorNotes[i];
+                            result += "La mejor nota del estudiante " + (i+1) + " es: " + formato.format(vectorNotes[i]);
                             result += "\n";
                         }
                         JOptionPane.showMessageDialog(null, result);
@@ -65,14 +67,14 @@ public class StudentClient {
                     }else if (choice == 3) {
                         vectorNotes = studentinterface.minorNote(noteMatrix, students, notes);
                         for (int i = 0; i < students; i++) {
-                            result += "La peor nota del estudiante " + (i+1) + " es: " + vectorNotes[i];
+                            result += "La peor nota del estudiante " + (i+1) + " es: " + formato.format(vectorNotes[i]);
                             result += "\n";
                         }
                         JOptionPane.showMessageDialog(null, result);
                         result = " ";
                     }else if (choice == 4){
                         average = studentinterface.groupAverage(noteMatrix, students, notes);
-                        JOptionPane.showMessageDialog(null, "El promedio del grupo es: " + average);
+                        JOptionPane.showMessageDialog(null, "El promedio del grupo es: " + formato.format(average));
                     }
                 } catch (NotBoundException | MalformedURLException | RemoteException ex) {
                     Logger.getLogger(StudentClient.class.getName()).log(Level.SEVERE, null, ex);

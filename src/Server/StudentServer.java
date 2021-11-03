@@ -8,7 +8,7 @@ import Implement.StudentImplement;
 /**
  *
  * @author Juan David Velez Velez
- * @author Sneider Alonso Gomez
+ * @author Sneider Alonso Gómez Orrego
  */
 public class StudentServer {
 
