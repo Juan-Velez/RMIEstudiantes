@@ -4,6 +4,7 @@ package Implement;
 import java.rmi.server.UnicastRemoteObject;
 import Interface.StudentInterface;
 import java.rmi.RemoteException;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -39,20 +40,28 @@ public class StudentImplement extends UnicastRemoteObject implements StudentInte
         this.students = students;
     }
 
-    
     @Override
     public float[][] fillMatrix(int numberNotes, int numberStudents) throws RemoteException {
               
         float auxMatrix[][] = new float[numberStudents][numberNotes];
-        
+
+//        formato.setMaximumFractionDigits(2);
         for (int i = 0; i < numberStudents; i++) {
             for (int j = 0; j < numberNotes; j++) {
-                auxMatrix[i][j] = (float) (Math.random()*5);
+                auxMatrix[i][j] = (float) (Math.random()*4+1);
+//                auxMatrix[i][j] = Float.valueOf(formato.format((float) (Math.random()*4+1)));
+                //formato.format(auxMatrix[i][j]);
+//                formato.format(auxMatrix[i][j] = (float) (Math.random()*4+1));
+            }
+        }
+       DecimalFormat formato = new DecimalFormat("#.#");
+        for (int i = 0; i < numberStudents; i++) {
+            for (int j = 0; j < numberNotes; j++) {
+                formato.format(auxMatrix[i][j]);
             }
         }
         noteMatrix = auxMatrix;
-        return noteMatrix;
-      
+        return noteMatrix; 
     }
 
     @Override
@@ -71,8 +80,7 @@ public class StudentImplement extends UnicastRemoteObject implements StudentInte
             major = 0;
         }  
         noteVector = auxVector;
-        return noteVector;
-        
+        return noteVector;   
     }
 
     @Override
@@ -91,8 +99,7 @@ public class StudentImplement extends UnicastRemoteObject implements StudentInte
             minor = 5;
         }
         noteVector = auxVector;
-        return noteVector;
-        
+        return noteVector;    
     }
 
     @Override
